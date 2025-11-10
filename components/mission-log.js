@@ -50,6 +50,13 @@ class MissionLog extends HTMLElement {
           opacity: .9;
           margin-top: .35rem;
         }
+        @media (max-width: 768px) {
+          .log:hover {
+            transform: none;
+            box-shadow: none;
+            background: linear-gradient(180deg, rgba(14,165,233,.08), rgba(14,165,233,.03));
+          }
+        }
       </style>
       <div class="log">
         <div class="time"><slot name="time"></slot></div>

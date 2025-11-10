@@ -69,10 +69,12 @@ if (form) {
 window.addEventListener('load', () => {
   const loadingScreen = document.getElementById('loadingScreen');
   if (loadingScreen) {
-    loadingScreen.classList.add('fade-out');
     setTimeout(() => {
-      loadingScreen.style.display = 'none';
-    }, 500);
+      loadingScreen.classList.add('fade-out');
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+      }, 500); // Corresponds to fade-out duration
+    }, 4000); // Show loading screen for 4 seconds
   }
 });
 
