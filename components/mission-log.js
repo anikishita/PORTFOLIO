@@ -15,6 +15,12 @@ class MissionLog extends HTMLElement {
           border-radius: .8rem;
           padding: 1rem 1rem 1rem 3.2rem;
           overflow: hidden;
+          transition: all 0.3s ease;
+        }
+        .log:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 0 15px rgba(14, 165, 233, 0.5);
+          background: linear-gradient(180deg, rgba(14,165,233,.12), rgba(14,165,233,.05));
         }
         .log::after {
           content: "";
@@ -43,6 +49,13 @@ class MissionLog extends HTMLElement {
           color: #cde7f7;
           opacity: .9;
           margin-top: .35rem;
+        }
+        @media (max-width: 768px) {
+          .log:hover {
+            transform: none;
+            box-shadow: none;
+            background: linear-gradient(180deg, rgba(14,165,233,.08), rgba(14,165,233,.03));
+          }
         }
       </style>
       <div class="log">
