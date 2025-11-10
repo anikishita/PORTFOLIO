@@ -1,0 +1,140 @@
+/* Futuristic HUD/Neon styles for K/EN-ITH portfolio */
+
+/* Base */
+:root {
+  --primary: #0ea5e9;
+  --glow: #00eaff;
+  --dark: #0b1020;
+  --border: rgba(14, 165, 233, 0.35);
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: rgba(14, 165, 233, 0.35);
+}
+
+/* Nav link hover */
+.nav-link {
+  position: relative;
+  color: #cbd5e1;
+  transition: color .2s ease;
+}
+.nav-link:hover { color: #0ea5e9; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0;
+  transform: scaleX(.5);
+  transition: all .25s ease;
+}
+.nav-link:hover::after { opacity: 1; transform: scaleX(1); }
+
+/* Buttons */
+.btn-primary, .btn-secondary, .icon-btn {
+  transition: all .2s ease;
+}
+.btn-primary {
+  background: linear-gradient(180deg, rgba(14,165,233,.15), rgba(14,165,233,.05));
+  border: 1px solid rgba(14,165,233,.55);
+  color: #e6f9ff;
+  padding: .75rem 1rem;
+  border-radius: .6rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 16px rgba(14,165,233,.45);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(14,165,233,.35);
+  color: #c7eaff;
+  padding: .7rem 1rem;
+  border-radius: .6rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-family: 'Orbitron', sans-serif;
+}
+.btn-secondary:hover {
+  border-color: rgba(14,165,233,.75);
+  color: white;
+  box-shadow: inset 0 0 12px rgba(14,165,233,.25);
+}
+
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: .6rem;
+  border: 1px solid rgba(14,165,233,.35);
+  color: #c7eaff;
+}
+.icon-btn:hover {
+  border-color: rgba(14,165,233,.75);
+  color: white;
+  box-shadow: 0 0 12px rgba(14,165,233,.35);
+}
+
+/* Input styles */
+.input-group {
+  display: grid;
+  gap: .4rem;
+  font-size: .85rem;
+  color: #9fb8c7;
+}
+.input-group span {
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #86b9d0;
+}
+.field {
+  background: rgba(11, 16, 32, 0.7);
+  border: 1px solid rgba(14,165,233,.35);
+  border-radius: .6rem;
+  color: #e6f9ff;
+  padding: .75rem .9rem;
+  outline: none;
+  transition: all .2s ease;
+}
+.field:focus {
+  border-color: rgba(14,165,233,.85);
+  box-shadow: 0 0 12px rgba(14,165,233,.35);
+}
+
+/* HUD dividers */
+.hud-divider {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: .18em;
+  color: #bde9ff;
+  border-left: 3px solid var(--primary);
+  padding-left: .8rem;
+  text-transform: uppercase;
+}
+
+/* Skill chips */
+.chip {
+  border: 1px solid rgba(14,165,233,.45);
+  color: #cdefff;
+  background: rgba(14,165,233,.08);
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  letter-spacing: .06em;
+  transition: all .2s ease;
+}
+.chip:hover {
+  box-shadow: 0 0 10px rgba(14,165,233,.35);
+  transform: translateY(-1px);
+}
+
+/* Holo-card specifics (scoped to shadow parts) are in component JS; adding general pulse) */

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#0ea5e9"/>
+  <title>KENITH // SYSTEM ONLINE — Kenith Mosquera</title>
+<!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0ea5e9', // cyan-500
+            secondary: '#1a1f2c', // deep dark navy
+            glow: '#00eaff',
+            slate: {
+              950: '#0b1020'
+            }
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'ui-sans-serif', 'system-ui'],
+            exo: ['Exo 2', 'ui-sans-serif', 'system-ui']
+          },
+          boxShadow: {
+            neon: '0 0 10px rgba(14,165,233,.6), 0 0 20px rgba(14,165,233,.4), 0 0 40px rgba(0,234,255,.2)',
+          },
+          keyframes: {
+            glowPulse: {
+              '0%, 100%': { boxShadow: '0 0 6px rgba(14,165,233,.35), 0 0 16px rgba(14,165,233,.25), inset 0 0 8px rgba(14,165,233,.2)' },
+              '50%': { boxShadow: '0 0 12px rgba(14,165,233,.7), 0 0 28px rgba(0,234,255,.35), inset 0 0 18px rgba(14,165,233,.35)' }
+            },
+            scanline: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(100vh)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' }
+            }
+          },
+          animation: {
+            glowPulse: 'glowPulse 2.6s ease-in-out infinite',
+            scanline: 'scanline 3.2s linear infinite',
+            float: 'float 6s ease-in-out infinite'
+          },
+          backgroundImage: {
+            'circuit': 'radial-gradient(circle at 20% 20%, rgba(14,165,233,.2) 0, transparent 40%), radial-gradient(circle at 80% 10%, rgba(0,234,255,.15) 0, transparent 40%), radial-gradient(circle at 60% 70%, rgba(14,165,233,.15) 0, transparent 45%)',
+            'grid': 'linear-gradient(rgba(14,165,233,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,.15) 1px, transparent 1px)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' rx='12' fill='%230b1020'/%3E%3Cpath d='M16 32h32M32 16v32' stroke='%230ea5e9' stroke-width='3'/%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-950 text-white font-exo antialiased selection:bg-primary/30 selection:text-white overflow-x-hidden">
+
+  <!-- Background layers -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-b from-secondary via-slate-950 to-black"></div>
+    <div class="absolute inset-0 bg-circuit opacity-40"></div>
+    <div class="absolute inset-0 bg-[length:40px_40px] bg-grid opacity-20"></div>
+
+    <!-- Floating accent orbs -->
+    <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-primary/10 blur-2xl animate-float"></div>
+    <div class="absolute top-1/3 right-20 w-40 h-40 rounded-full bg-glow/10 blur-2xl animate-float" style="animation-delay: 1.2s;"></div>
+    <div class="absolute bottom-10 left-1/3 w-28 h-28 rounded-full bg-primary/10 blur-2xl animate-float" style="animation-delay: 2.4s;"></div>
+
+    <!-- Scanline overlay -->
+    <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/10 to-transparent opacity-30 animate-scanline"></div>
+  </div>
+
+  <!-- HUD Header -->
+  <header class="sticky top-0 z-50 bg-slate-950/70 backdrop-blur border-b border-primary/30">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-2.5 h-2.5 rounded-full bg-primary shadow-neon animate-glowPulse"></div>
+        <div class="font-orbitron tracking-widest text-sm md:text-base">
+          ( NAME ) // <span class="text-primary">NAME MOSQUERA</span>
+</div>
+</div>
+<nav class="hidden md:flex gap-6 text-sm tracking-widest">
+        <a href="#about" class="nav-link">ABOUT</a>
+        <a href="#experience" class="nav-link">EXPERIENCE</a>
+        <a href="#skills" class="nav-link">SKILLS</a>
+        <a href="#objectives" class="nav-link">OBJECTIVES</a>
+        <a href="#contact" class="nav-link">CONTACT</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="menuToggle" class="p-2 rounded border border-primary/40 text-primary hover:bg-primary/10 transition">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileNav" class="md:hidden hidden border-t border-primary/20">
+      <div class="px-6 py-3 flex flex-col gap-2 text-sm tracking-widest">
+        <a href="#about" class="py-2 hover:text-primary">ABOUT</a>
+        <a href="#experience" class="py-2 hover:text-primary">EXPERIENCE</a>
+        <a href="#skills" class="py-2 hover:text-primary">SKILLS</a>
+        <a href="#objectives" class="py-2 hover:text-primary">OBJECTIVES</a>
+        <a href="#contact" class="py-2 hover:text-primary">CONTACT</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative">
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-24">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="font-orbitron text-3xl md:text-5xl lg:text-6xl leading-tight">
+            KENITH MOSQUERA // <span class="text-primary drop-shadow-[0_0_12px_rgba(14,165,233,.5)]">SYSTEM ONLINE</span>
+          </h1>
+<p class="mt-4 text-lg text-slate-300">
+            Knowledgeable Web Developer • AI Enthusiast • Continuous Learner
+          </p>
+<div class="mt-8 flex flex-wrap gap-4">
+            <a href="assets/Kenith_Mosquera_Resume.pdf" download class="btn-primary">> DOWNLOAD RESUME</a>
+            <button class="btn-secondary" data-open-contact>> CONTACT PROTOCOL</button>
+          </div>
+          <p class="mt-6 text-xs text-slate-400 tracking-widest">
+            Mindset: “Adapt. Learn. Execute.” — Calm, focused, efficient.
+          </p>
+        </div>
+        <div class="relative">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Profile Image -->
+            <div class="order-2 md:order-1">
+              <div class="relative rounded-xl border border-primary/30 bg-slate-900/50 p-4 shadow-neon backdrop-blur">
+                <img 
+                  src="https://huggingface.co/spaces/kpm1030/kenith-kayo-portfolio/resolve/main/images/Gemini_Generated_Image_rie0a5rie0a5rie0.png" 
+                  alt="Kenith Mosquera - Profile Photo" 
+                  class="w-full h-auto rounded-lg border border-primary/20"
+                />
+                <div class="mt-3 text-center">
+                  <div class="text-xs uppercase tracking-widest text-slate-400">KENITH</div>
+                  <div class="font-orbitron text-primary">KENITH</div>
+                </div>
+</div>
+            </div>
+            
+            <!-- Status Card -->
+            <div class="order-1 md:order-2 rounded-xl border border-primary/30 bg-slate-900/50 p-6 shadow-neon backdrop-blur animate-glowPulse">
+              <div class="text-xs uppercase tracking-widest text-slate-400">Status</div>
+              <div class="mt-2 font-orbitron text-2xl text-primary">ACTIVE</div>
+              <div class="mt-4 grid grid-cols-1 gap-3 text-sm">
+                <div class="p-3 rounded border border-primary/20 bg-slate-950/40">
+                  <div class="text-slate-400">Codename</div>
+                  <div class="font-orbitron">KENITH</div>
+                </div>
+<div class="p-3 rounded border border-primary/20 bg-slate-950/40">
+                  <div class="text-slate-400">Age</div>
+                  <div class="font-orbitron">20</div>
+                </div>
+                <div class="p-3 rounded border border-primary/20 bg-slate-950/40">
+                  <div class="text-slate-400">Education</div>
+                  <div>BSIT — STI College</div>
+                </div>
+                <div class="p-3 rounded border border-primary/20 bg-slate-950/40">
+                  <div class="text-slate-400">Region</div>
+                  <div>Philippines</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- floating status chips -->
+          <div class="absolute -top-6 -right-6 rotate-6">
+            <holo-card>
+              <div class="text-xs uppercase tracking-widest text-slate-300">Focus</div>
+              <div>AI Integration • Web Dev</div>
+            </holo-card>
+          </div>
+          <div class="absolute -bottom-5 -left-5 -rotate-6">
+            <holo-card>
+              <div class="text-xs uppercase tracking-widest text-slate-300">Focus</div>
+              <div>AI Integration • Web Dev</div>
+            </holo-card>
+          </div>
+        </div>
+</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-14 md:py-20 border-t border-primary/20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="hud-divider">[ ABOUT // PROFILE DATA ]</div>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <mission-log>
+          <div slot="time">[2024]</div>
+          <div slot="title">SITIO CUATRO OPS — Bartender</div>
+          <div slot="desc">Managed service flow under pressure, maintained operational efficiency.</div>
+        </mission-log>
+        <mission-log>
+          <div slot="time">[2023]</div>
+          <div slot="title">GAS UNIT — Delivery Worker</div>
+          <div slot="desc">Executed safe transport and coordination with clients.</div>
+        </mission-log>
+        <mission-log>
+          <div slot="time">[2023]</div>
+          <div slot="title">WATER SUPPLY OPS — Delivery Worker</div>
+          <div slot="desc">Ensured reliability and client satisfaction.</div>
+        </mission-log>
+        <mission-log>
+          <div slot="time">[2021]</div>
+          <div slot="title">ABESTILLA MERCH OPS — Store Manager</div>
+          <div slot="desc">Oversaw logistics, sales, and stock coordination.</div>
+        </mission-log>
+      </div>
+    </div>
+  </section>
+<!-- EXPERIENCE -->
+  <section id="experience" class="py-14 md:py-20 border-t border-primary/20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="hud-divider">[ EXPERIENCE // OPERATION LOGS ]</div>
+      <div class="mt-6 space-y-4">
+        <mission-log>
+          <div slot="time">[2024]</div>
+          <div slot="title">SITIO CUATRO OPS — Bartender</div>
+          <div slot="desc">Managed service flow under pressure, maintained operational efficiency.</div>
+        </mission-log>
+        <mission-log>
+          <div slot="time">[2023]</div>
+          <div slot="title">GAS UNIT — Delivery Worker</div>
+          <div slot="desc">Executed safe transport and coordination with clients.</div>
+        </mission-log>
+        <mission-log>
+          <div slot="time">[2023]</div>
+          <div slot="title">WATER SUPPLY OPS — Delivery Worker</div>
+          <div slot="desc">Ensured reliability and client satisfaction.</div>
+        </mission-log>
+        <mission-log>
+          <div slot="time">[2021]</div>
+          <div slot="title">ABESTILLA MERCH OPS — Store Manager</div>
+          <div slot="desc">Oversaw logistics, sales, and stock coordination.</div>
+        </mission-log>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-14 md:py-20 border-t border-primary/20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="hud-divider">[ SKILL MODULES ]</div>
+      <div class="mt-6 grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <holo-card>
+          <h4 class="font-orbitron text-primary">Technical Skills</h4>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Python</span>
+          </div>
+        </holo-card>
+        <holo-card>
+          <h4 class="font-orbitron text-primary">Core Attributes</h4>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip">Fast Learner</span>
+            <span class="chip">Team Player</span>
+            <span class="chip">Adaptive</span>
+            <span class="chip">Calm Under Pressure</span>
+          </div>
+        </holo-card>
+        <holo-card>
+          <h4 class="font-orbitron text-primary">Systems</h4>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip">AI Tools</span>
+            <span class="chip">Web Development</span>
+            <span class="chip">Digital Design</span>
+          </div>
+        </holo-card>
+        <holo-card>
+          <h4 class="font-orbitron text-primary">Core Parameters</h4>
+          <div class="mt-3 space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-slate-400">EDU_LEVEL</span><span class="font-mono">BSIT</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">STATUS</span><span class="font-mono">Active Student</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">FOCUS</span><span class="font-mono">Web | AI | Learning</span></div>
+            <div class="flex justify-between"><span class="text-slate-400">REGION</span><span class="font-mono">PH</span></div>
+          </div>
+        </holo-card>
+      </div>
+      <div class="mt-4 text-xs tracking-widest text-slate-400">System calibration complete. Skills synced.</div>
+    </div>
+  </section>
+
+  <!-- OBJECTIVES -->
+  <section id="objectives" class="py-14 md:py-20 border-t border-primary/20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="hud-divider">[ OBJECTIVES ]</div>
+      <div class="mt-6 grid sm:grid-cols-2 gap-4">
+        <objective-card num="001">Master advanced web development frameworks</objective-card>
+        <objective-card num="002">Build innovative AI-integrated web applications</objective-card>
+        <objective-card num="003">Develop a strong portfolio of practical projects</objective-card>
+        <objective-card num="004">Continue learning emerging technologies</objective-card>
+      </div>
+    </div>
+  </section>
+<!-- CONTACT -->
+  <section id="contact" class="py-14 md:py-20 border-t border-primary/20">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="hud-divider">[ INITIATE CONTACT SEQUENCE ]</div>
+      <form id="contactForm" class="mt-6 grid gap-4">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="input-group">
+            <span>Callsign</span>
+            <input required name="name" placeholder="Your name" class="field"/>
+          </label>
+          <label class="input-group">
+            <span>Channel</span>
+            <input required type="email" name="email" placeholder="your@email.com" class="field"/>
+          </label>
+        </div>
+        <label class="input-group">
+          <span>Subject</span>
+          <input required name="subject" placeholder="Project or mission" class="field"/>
+        </label>
+        <label class="input-group">
+          <span>Message</span>
+          <textarea required name="message" rows="5" placeholder="Brief your mission..." class="field"></textarea>
+        </label>
+        <div class="flex items-center gap-4">
+          <button type="submit" class="btn-primary">> SEND TRANSMISSION</button>
+          <div id="formStatus" class="text-sm text-slate-400"></div>
+        </div>
+      </form>
+      <p class="mt-6 text-sm text-slate-400">Got a project or mission? Let’s connect and deploy results.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 border-t border-primary/20">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="text-sm text-slate-400">© 2025 KENITH SYSTEM — Built for precision and clarity.</div>
+<div class="flex gap-3">
+        <a href="https://github.com/" target="_blank" class="icon-btn" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.19-3.37-1.19a2.65 2.65 0 00-1.1-1.47c-.9-.62.07-.61.07-.61a2.1 2.1 0 011.54 1.04 2.14 2.14 0 002.92.84 2.14 2.14 0 01.64-1.34c-2.22-.25-4.55-1.11-4.55-4.95a3.87 3.87 0 011.03-2.69 3.6 3.6 0 01.1-2.65s.84-.27 2.75 1.03a9.43 9.43 0 015 0c1.91-1.3 2.75-1.03 2.75-1.03.37.86.41 1.84.1 2.72a3.87 3.87 0 011.03 2.69c0 3.85-2.34 4.7-4.57 4.95a2.4 2.4 0 01.68 1.86v2.76c0 .26.18.58.69.48A10 10 0 0012 2z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/" target="_blank" class="icon-btn" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.1c.5-.9 1.8-2.2 3.8-2.2 4 0 4.7 2.6 4.7 6V24h-4v-7.1c0-1.7 0-3.8-2.3-3.8s-2.7 1.8-2.7 3.7V24h-4V8z"/></svg>
+        </a>
+        <a href="mailto:mosquera.kp10@gmail.com" class="icon-btn" aria-label="Email">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8.24l7.4 5.93c.35.28.86.28 1.2 0L20 8.24V18H4z"/></svg>
+</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Modal -->
+  <dialog id="contactModal" class="rounded-xl border border-primary/40 bg-slate-950/95 text-white w-[92%] sm:w-[560px]">
+    <form method="dialog" class="p-0">
+      <div class="flex items-center justify-between p-4 border-b border-primary/30">
+      <div class="font-orbitron tracking-widest text-primary">CONTACT PROTOCOL</div>
+<button value="close" class="p-2 rounded border border-primary/30 text-primary hover:bg-primary/10">&times;</button>
+      </div>
+      <div class="p-6">
+        <div class="text-sm text-slate-300">Use the form below or email directly at mosquera.kp10@gmail.com</div>
+<div class="mt-4 grid gap-4">
+          <label class="input-group">
+            <span>Callsign</span>
+            <input name="name" class="field" placeholder="Your name"/>
+          </label>
+          <label class="input-group">
+            <span>Channel</span>
+            <input name="email" type="email" class="field" placeholder="your@email.com"/>
+          </label>
+          <label class="input-group">
+            <span>Message</span>
+            <textarea name="message" rows="4" class="field" placeholder="Brief your mission..."></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="p-4 border-t border-primary/30 flex justify-end">
+        <button value="close" class="btn-secondary">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Components -->
+  <script src="components/holo-card.js"></script>
+  <script src="components/mission-log.js"></script>
+  <script src="components/objective-card.js"></script>
+  <!-- Main script -->
+  <script src="script.js"></script>
+<script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
+</body>
+</html>
