@@ -33,30 +33,48 @@ openBtns.forEach(btn => {
   });
 });
 
-// Contact form behavior (mailto fallback)
+// Contact form behavior
 const form = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(form);
-    const name = encodeURIComponent(data.get('name') || '');
-    const email = encodeURIComponent(data.get('email') || '');
-const subject = encodeURIComponent((data.get('subject') || 'New message from KENITH site'));
-const message = encodeURIComponent(`${data.get('message') || ''}\n\nFrom: ${name} <${email}>`);
-    // Replace with your email
-    const to = 'mosquera.kp10@gmail.com';
-const mailto = `mailto:${to}?subject=${subject}&body=${message}`;
-
-    // Try opening mail client
-    window.location.href = mailto;
-
-    if (formStatus) {
-      formStatus.textContent = 'Transmission prepared. If your email client did not open, please send manually.';
-    }
-    form.reset();
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        formStatus.textContent = 'Transmission successful!';
+        form.reset();
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            formStatus.textContent = data["errors"].map(error => error["message"]).join(", ")
+          } else {
+            formStatus.textContent = 'Oops! There was a problem sending your message.'
+          }
+        })
+      }
+    }).catch(error => {
+      formStatus.textContent = 'Oops! There was a problem sending your message.'
+    });
   });
 }
+
+// Loading screen
+window.addEventListener('load', () => {
+  const loadingScreen = document.getElementById('loadingScreen');
+  if (loadingScreen) {
+    loadingScreen.classList.add('fade-out');
+    setTimeout(() => {
+      loadingScreen.style.display = 'none';
+    }, 500);
+  }
+});
 
 // Optional: reduce motion preference
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

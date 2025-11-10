@@ -137,4 +137,9 @@ html, body {
   transform: translateY(-1px);
 }
 
+#loadingScreen.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
 /* Holo-card specifics (scoped to shadow parts) are in component JS; adding general pulse) */
