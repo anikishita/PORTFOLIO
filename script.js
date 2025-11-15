@@ -24,46 +24,6 @@ links.forEach(a => {
   });
 });
 
-// Open contact modal
-const openBtns = document.querySelectorAll('[data-open-contact]');
-const modal = document.getElementById('contactModal');
-openBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (modal) modal.showModal();
-  });
-});
-
-// Contact form behavior
-const form = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        formStatus.textContent = 'Transmission successful!';
-        form.reset();
-      } else {
-        response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            formStatus.textContent = data["errors"].map(error => error["message"]).join(", ")
-          } else {
-            formStatus.textContent = 'Oops! There was a problem sending your message.'
-          }
-        })
-      }
-    }).catch(error => {
-      formStatus.textContent = 'Oops! There was a problem sending your message.'
-    });
-  });
-}
 
 // Loading screen
 window.addEventListener('load', () => {
