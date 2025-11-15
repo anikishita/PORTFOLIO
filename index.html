@@ -283,30 +283,7 @@
   <section id="contact" class="py-14 md:py-20 border-t border-primary/20">
     <div class="max-w-4xl mx-auto px-6">
       <div class="hud-divider">[ INITIATE CONTACT SEQUENCE ]</div>
-      <form id="contactForm" class="mt-6 grid gap-4" action="https://formspree.io/f/mqkrvgda" method="POST">
-        <div class="grid sm:grid-cols-2 gap-4">
-          <label class="input-group">
-            <span>Callsign</span>
-            <input required name="name" placeholder="Your name" class="field"/>
-          </label>
-          <label class="input-group">
-            <span>Channel</span>
-            <input required type="email" name="email" placeholder="your@email.com" class="field"/>
-          </label>
-        </div>
-        <label class="input-group">
-          <span>Subject</span>
-          <input required name="subject" placeholder="Project or mission" class="field"/>
-        </label>
-        <label class="input-group">
-          <span>Message</span>
-          <textarea required name="message" rows="5" placeholder="Brief your mission..." class="field"></textarea>
-        </label>
-        <div class="flex items-center gap-4">
-          <button type="submit" class="btn-primary">> SEND TRANSMISSION</button>
-          <div id="formStatus" class="text-sm text-slate-400"></div>
-        </div>
-      </form>
+      <contact-form></contact-form>
       <p class="mt-6 text-sm text-slate-400">Got a project or mission? Let’s connect and deploy results.</p>
       <p class="mt-2 text-sm text-slate-400">Phone: 09932729367</p>
     </div>
@@ -364,6 +341,7 @@
   <script src="components/holo-card.js"></script>
   <script src="components/mission-log.js"></script>
   <script src="components/objective-card.js"></script>
+  <script src="components/contact-form.js"></script>
   <!-- Main script -->
   <script src="script.js"></script>
 </body>

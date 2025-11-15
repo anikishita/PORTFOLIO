@@ -33,38 +33,6 @@ openBtns.forEach(btn => {
   });
 });
 
-// Contact form behavior
-const form = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        formStatus.textContent = 'Transmission successful!';
-        form.reset();
-      } else {
-        response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            formStatus.textContent = data["errors"].map(error => error["message"]).join(", ")
-          } else {
-            formStatus.textContent = 'Oops! There was a problem sending your message.'
-          }
-        })
-      }
-    }).catch(error => {
-      formStatus.textContent = 'Oops! There was a problem sending your message.'
-    });
-  });
-}
-
 // Loading screen
 window.addEventListener('load', () => {
   const loadingScreen = document.getElementById('loadingScreen');
@@ -84,3 +52,51 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     el.style.animation = 'none';
   });
 }
+
+// Vercel Serverless Function form submission
+document.addEventListener('DOMContentLoaded', () => {
+  const contactFormComponent = document.querySelector('contact-form');
+  if (contactFormComponent) {
+    const form = contactFormComponent.shadowRoot.getElementById('contactForm');
+    const formStatus = contactFormComponent.shadowRoot.getElementById('formStatus');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitButton.disabled = true;
+      formStatus.textContent = 'Sending transmission...';
+
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+      };
+
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          formStatus.textContent = result.message;
+          form.reset();
+        } else {
+          formStatus.textContent = `Error: ${result.message}`;
+        }
+      } catch (error) {
+        console.error('Submission error:', error);
+        formStatus.textContent = 'A network error occurred. Please try again.';
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  }
+});
