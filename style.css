@@ -156,3 +156,73 @@ html, body {
 }
 
 /* Holo-card specifics (scoped to shadow parts) are in component JS; adding general pulse) */
+
+/* Profile Image Hover Effect */
+img[src="images/profile.png"] {
+  transition: filter 0.3s ease-in-out, transform 0.3s ease;
+  cursor: pointer;
+}
+
+img[src="images/profile.png"]:hover {
+  filter: blur(4px) brightness(0.8);
+  transform: scale(1.05);
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 101; /* Higher than header */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(11, 16, 32, 0.85); /* bg-slate-950 with opacity */
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  max-width: 90vw;
+  max-height: 90vh;
+  border: 2px solid var(--border);
+  border-radius: 0.75rem; /* 12px */
+  box-shadow: 0 0 40px rgba(14, 165, 233, 0.5);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.modal.show .modal-content {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+
+/* Close button styles */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 102;
+}
+
+.close-button:hover {
+  color: var(--primary);
+  transform: scale(1.1);
+}
