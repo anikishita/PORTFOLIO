@@ -97,6 +97,7 @@
 <nav class="hidden md:flex gap-6 text-sm tracking-widest">
         <a href="#experience" class="nav-link">EXPERIENCE</a>
         <a href="#skills" class="nav-link">SKILLS</a>
+        <a href="#projects" class="nav-link">PROJECTS</a>
         <a href="#objectives" class="nav-link">OBJECTIVES</a>
         <a href="#contact" class="nav-link">CONTACT</a>
       </nav>
@@ -110,6 +111,7 @@
       <div class="px-6 py-3 flex flex-col gap-2 text-sm tracking-widest">
         <a href="#experience" class="py-2 hover:text-primary">EXPERIENCE</a>
         <a href="#skills" class="py-2 hover:text-primary">SKILLS</a>
+        <a href="#projects" class="py-2 hover:text-primary">PROJECTS</a>
         <a href="#objectives" class="py-2 hover:text-primary">OBJECTIVES</a>
         <a href="#contact" class="py-2 hover:text-primary">CONTACT</a>
       </div>
@@ -266,6 +268,58 @@
     </div>
   </section>
 
+  <!-- PROJECTS -->
+  <section id="projects" class="py-14 md:py-20 border-t border-primary/20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="hud-divider">[ PROJECT ARCHIVES ]</div>
+      <p class="mt-4 text-sm text-slate-400">Explore my portfolio of completed missions and deployed systems.</p>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project 1 Placeholder -->
+        <project-card title="PROJECT_001">
+          Add your project description here. Explain what the project does and its key features.
+          <span slot="tags" class="tag">HTML</span>
+          <span slot="tags" class="tag">CSS</span>
+          <span slot="tags" class="tag">JavaScript</span>
+        </project-card>
+        
+        <!-- Project 2 Placeholder -->
+        <project-card title="PROJECT_002">
+          Add your project description here. Explain what the project does and its key features.
+          <span slot="tags" class="tag">Python</span>
+          <span slot="tags" class="tag">AI</span>
+        </project-card>
+        
+        <!-- Project 3 Placeholder -->
+        <project-card title="PROJECT_003">
+          Add your project description here. Explain what the project does and its key features.
+          <span slot="tags" class="tag">Web Dev</span>
+          <span slot="tags" class="tag">React</span>
+        </project-card>
+        
+        <!-- Project 4 Placeholder -->
+        <project-card title="PROJECT_004">
+          Add your project description here. Explain what the project does and its key features.
+          <span slot="tags" class="tag">Node.js</span>
+          <span slot="tags" class="tag">API</span>
+        </project-card>
+        
+        <!-- Project 5 Placeholder -->
+        <project-card title="PROJECT_005">
+          Add your project description here. Explain what the project does and its key features.
+          <span slot="tags" class="tag">Design</span>
+          <span slot="tags" class="tag">UI/UX</span>
+        </project-card>
+        
+        <!-- Project 6 Placeholder -->
+        <project-card title="PROJECT_006">
+          Add your project description here. Explain what the project does and its key features.
+          <span slot="tags" class="tag">Full Stack</span>
+          <span slot="tags" class="tag">Database</span>
+        </project-card>
+      </div>
+    </div>
+  </section>
+
   <!-- OBJECTIVES -->
   <section id="objectives" class="py-14 md:py-20 border-t border-primary/20">
     <div class="max-w-6xl mx-auto px-6">
@@ -311,6 +365,7 @@
   <script src="components/holo-card.js"></script>
   <script src="components/mission-log.js"></script>
   <script src="components/objective-card.js"></script>
+  <script src="components/project-card.js"></script>
   <!-- Main script -->
   <script src="script.js"></script>
 
