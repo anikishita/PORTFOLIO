@@ -25,27 +25,11 @@ links.forEach(a => {
 });
 
 
-// Loading screen - only show on first page visit in session
+// Hide loading screen immediately for instantaneous page loads
 window.addEventListener('load', () => {
   const loadingScreen = document.getElementById('loadingScreen');
   if (loadingScreen) {
-    // Check if loading screen has already been shown in this session
-    const hasSeenLoading = sessionStorage.getItem('hasSeenLoading');
-    
-    if (hasSeenLoading) {
-      // Skip loading screen if already shown
-      loadingScreen.style.display = 'none';
-    } else {
-      // Mark that loading screen has been shown in this session
-      sessionStorage.setItem('hasSeenLoading', 'true');
-      // Show loading screen
-      setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
-        setTimeout(() => {
-          loadingScreen.style.display = 'none';
-        }, 500); // Corresponds to fade-out duration
-      }, 3000); // Show loading screen for 3 seconds
-    }
+    loadingScreen.style.display = 'none';
   }
 });
 
