@@ -36,13 +36,13 @@ window.addEventListener('load', () => {
       // Skip loading screen if already shown
       loadingScreen.style.display = 'none';
     } else {
-      // Show loading screen and mark as seen
+      // Mark that loading screen has been shown in this session
+      sessionStorage.setItem('hasSeenLoading', 'true');
+      // Show loading screen
       setTimeout(() => {
         loadingScreen.classList.add('fade-out');
         setTimeout(() => {
           loadingScreen.style.display = 'none';
-          // Mark that loading screen has been shown in this session
-          sessionStorage.setItem('hasSeenLoading', 'true');
         }, 500); // Corresponds to fade-out duration
       }, 3000); // Show loading screen for 3 seconds
     }
