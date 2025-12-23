@@ -25,16 +25,11 @@ links.forEach(a => {
 });
 
 
-// Loading screen
+// Hide loading screen immediately for instantaneous page loads
 window.addEventListener('load', () => {
   const loadingScreen = document.getElementById('loadingScreen');
   if (loadingScreen) {
-    setTimeout(() => {
-      loadingScreen.classList.add('fade-out');
-      setTimeout(() => {
-        loadingScreen.style.display = 'none';
-      }, 500); // Corresponds to fade-out duration
-    }, 3000); // Show loading screen for 3 seconds
+    loadingScreen.style.display = 'none';
   }
 });
 
